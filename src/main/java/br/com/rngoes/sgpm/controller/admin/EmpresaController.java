@@ -26,13 +26,18 @@ public class EmpresaController {
         return ResponseEntity.ok(service.listarEmpresas());
     }
 
+    @GetMapping("/empresa/{id}")
+    public ResponseEntity<Empresa> consultarEmpresa(@PathVariable Integer id) {
+        return ResponseEntity.ok(service.consultarEmpresa(id));
+    }
+
     @PatchMapping("empresa")
     public ResponseEntity<Empresa> alterarEmpresa(@RequestBody Empresa empresa) {
         return ResponseEntity.ok(service.alterarEmpresa(empresa));
     }
 
     @DeleteMapping("/empresa/{id}")
-    public ResponseEntity<String> deleteEmpresa(@PathVariable Integer id) {
+    public ResponseEntity<String> deletarEmpresa(@PathVariable Integer id) {
         return ResponseEntity.ok(service.deletarEmpresa(id));
     }
 }
