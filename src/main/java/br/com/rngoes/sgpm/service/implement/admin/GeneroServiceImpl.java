@@ -1,7 +1,6 @@
 package br.com.rngoes.sgpm.service.implement.admin;
 
 import br.com.rngoes.sgpm.exception.NotFoundException;
-import br.com.rngoes.sgpm.model.admin.Empresa;
 import br.com.rngoes.sgpm.model.admin.Genero;
 import br.com.rngoes.sgpm.repository.admin.GeneroRepo;
 import br.com.rngoes.sgpm.service.interfaces.admin.IGeneroService;
@@ -30,7 +29,11 @@ public class GeneroServiceImpl implements IGeneroService {
 
     @Override
     public Genero consultarGenero(Integer id) {
-        return repo.findById(id).orElseThrow(()-> new NotFoundException("Genero " + id + " não encontrado."));
+        Genero genero = repo.findById(id).orElseThrow(()-> new NotFoundException("Genero " + id + " não encontrado."));
+        if (!genero.getAtivo()) {
+            throw new NotFoundException("Genero " + id + " não encontrado.");
+        }
+        return genero;
     }
 
     @Override
@@ -45,10 +48,7 @@ public class GeneroServiceImpl implements IGeneroService {
 
     @Override
     public String deletarGenero(Integer id) {
-        Genero genero = repo.findById(id).orElseThrow(()-> new NotFoundException("Genero " + id + " não encontrado."));
-        if (!genero.getAtivo()) {
-            throw new NotFoundException("Genero " + id + " não encontrado.");
-        }
+        Genero genero = consultarGenero(id);
         genero.setAtivo(Boolean.FALSE);
         repo.save(genero);
         return "Genero " + id + " excluido com sucesso.";
