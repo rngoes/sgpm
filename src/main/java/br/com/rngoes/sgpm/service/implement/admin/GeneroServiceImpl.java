@@ -1,5 +1,6 @@
 package br.com.rngoes.sgpm.service.implement.admin;
 
+import br.com.rngoes.sgpm.exception.InvalidFieldException;
 import br.com.rngoes.sgpm.exception.NotFoundException;
 import br.com.rngoes.sgpm.model.admin.Genero;
 import br.com.rngoes.sgpm.repository.admin.GeneroRepo;
@@ -18,7 +19,16 @@ public class GeneroServiceImpl implements IGeneroService {
     }
 
     @Override
-    public Genero addGenero(Genero genero) {
+    public Genero criarGenero(Genero genero) {
+        if (genero.getId() != null) {
+            throw new InvalidFieldException("Para cadastrar um genero o campo 'id' não deve ser informado.");
+        }
+        if (genero.getDescricao() == null) {
+            throw new InvalidFieldException("Para cadastrar um genero o campo 'descricao' deve ser informado.");
+        }
+        if (genero.getAtivo() != null) {
+            throw new InvalidFieldException("Para cadastrar um genero o campo 'ativo' não deve ser informado.");
+        }
         return repo.save(genero);
     }
 
@@ -39,7 +49,13 @@ public class GeneroServiceImpl implements IGeneroService {
     @Override
     public Genero alterarGenero(Genero genero) {
         if (genero.getId() == null) {
-            throw new NotFoundException("ID do genero é obrigatorio.");
+            throw new InvalidFieldException("Para alterar um genero o campo 'id' deve ser informado.");
+        }
+        if (genero.getDescricao() == null) {
+            throw new InvalidFieldException("Para alterar um genero o campo 'descricao' deve ser informado.");
+        }
+        if (genero.getAtivo() != null) {
+            throw new InvalidFieldException("Para alterar um genero o campo 'ativo' não deve ser informado.");
         }
         Genero recuperado = consultarGenero(genero.getId());
         recuperado.setDescricao(genero.getDescricao());

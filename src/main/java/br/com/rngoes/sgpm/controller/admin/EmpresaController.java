@@ -16,9 +16,9 @@ public class EmpresaController {
     }
 
     @PostMapping("/empresa")
-    public ResponseEntity<Empresa> addEmpresa(@RequestBody Empresa empresa) {
+    public ResponseEntity<Empresa> criarEmpresa(@RequestBody Empresa empresa) {
         empresa.setAtivo(true);
-        return ResponseEntity.status(201).body(service.addEmpresa(empresa));
+        return ResponseEntity.status(201).body(service.criarEmpresa(empresa));
     }
 
     @GetMapping("/empresa")

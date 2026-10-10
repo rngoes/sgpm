@@ -16,9 +16,9 @@ public class LocalidadeController {
     }
 
     @PostMapping("/localidade")
-    public ResponseEntity<Localidade> addLocalidade(@RequestBody Localidade localidade) {
+    public ResponseEntity<Localidade> criarLocalidade(@RequestBody Localidade localidade) {
         localidade.setAtivo(true);
-        return ResponseEntity.status(201).body(service.addLocalidade(localidade));
+        return ResponseEntity.status(201).body(service.criarLocalidade(localidade));
     }
 
     @GetMapping("/localidade")

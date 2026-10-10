@@ -17,9 +17,9 @@ public class NivelCarreiraController {
     }
 
     @PostMapping("/nivelcarreira")
-    public ResponseEntity<NivelCarreira> addNivelCarreira(@RequestBody NivelCarreira nivelCarreira) {
+    public ResponseEntity<NivelCarreira> criarNivelCarreira(@RequestBody NivelCarreira nivelCarreira) {
         nivelCarreira.setAtivo(true);
-        return ResponseEntity.status(201).body(service.addNivelCarreira(nivelCarreira));
+        return ResponseEntity.status(201).body(service.criarNivelCarreira(nivelCarreira));
     }
 
     @GetMapping("/nivelcarreira")

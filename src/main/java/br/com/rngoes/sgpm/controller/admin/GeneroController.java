@@ -16,9 +16,9 @@ public class GeneroController {
     }
 
     @PostMapping("/genero")
-    public ResponseEntity<Genero> addGenero(@RequestBody Genero genero) {
+    public ResponseEntity<Genero> criarGenero(@RequestBody Genero genero) {
         genero.setAtivo(true);
-        return ResponseEntity.status(201).body(service.addGenero(genero));
+        return ResponseEntity.status(201).body(service.criarGenero(genero));
     }
 
     @GetMapping("/genero")

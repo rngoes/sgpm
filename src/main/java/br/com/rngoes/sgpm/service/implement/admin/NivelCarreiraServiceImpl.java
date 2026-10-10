@@ -1,7 +1,7 @@
 package br.com.rngoes.sgpm.service.implement.admin;
 
+import br.com.rngoes.sgpm.exception.InvalidFieldException;
 import br.com.rngoes.sgpm.exception.NotFoundException;
-import br.com.rngoes.sgpm.model.admin.Localidade;
 import br.com.rngoes.sgpm.model.admin.NivelCarreira;
 import br.com.rngoes.sgpm.repository.admin.NivelCarreiraRepo;
 import br.com.rngoes.sgpm.service.interfaces.admin.INivelCarreiraService;
@@ -19,7 +19,16 @@ public class NivelCarreiraServiceImpl implements INivelCarreiraService {
     }
 
     @Override
-    public NivelCarreira addNivelCarreira(NivelCarreira nivelCarreira) {
+    public NivelCarreira criarNivelCarreira(NivelCarreira nivelCarreira) {
+        if (nivelCarreira.getId() != null) {
+            throw new InvalidFieldException("Para cadastrar um nível carreira o campo 'id' não deve ser informado.");
+        }
+        if (nivelCarreira.getDescricao() == null) {
+            throw new InvalidFieldException("Para cadastrar um nível carreira o campo 'descricao' deve ser informado.");
+        }
+        if (nivelCarreira.getAtivo() != null) {
+            throw new InvalidFieldException("Para cadastrar um nível carreira o campo 'ativo' não deve ser informado.");
+        }
         return repo.save(nivelCarreira);
     }
 
@@ -40,7 +49,13 @@ public class NivelCarreiraServiceImpl implements INivelCarreiraService {
     @Override
     public NivelCarreira alterarNivelCarreira(NivelCarreira nivelCarreira) {
         if (nivelCarreira.getId() == null) {
-            throw new NotFoundException("ID do nivel de carreira é obrigatorio.");
+            throw new InvalidFieldException("Para alterar um nível carreira o campo 'id' deve ser informado.");
+        }
+        if (nivelCarreira.getDescricao() == null) {
+            throw new InvalidFieldException("Para alterar um nível carreira o campo 'descricao' deve ser informado.");
+        }
+        if (nivelCarreira.getAtivo() != null) {
+            throw new InvalidFieldException("Para alterar um nível carreira o campo 'ativo' não deve ser informado.");
         }
         NivelCarreira recuperado = consultarNivelCarreira(nivelCarreira.getId());
         recuperado.setDescricao(nivelCarreira.getDescricao());

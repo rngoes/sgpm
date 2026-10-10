@@ -5,7 +5,7 @@ import br.com.rngoes.sgpm.model.admin.Localidade;
 import java.util.List;
 
 public interface ILocalidadeService {
-    public Localidade addLocalidade(Localidade localidade);
+    public Localidade criarLocalidade(Localidade localidade);
     public List<Localidade> listarLocalidade();
     public List<Localidade> listarBase();
     public Localidade consultarLocalidade(Integer id);

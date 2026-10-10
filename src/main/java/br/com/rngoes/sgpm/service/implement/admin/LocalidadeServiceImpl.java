@@ -1,7 +1,7 @@
 package br.com.rngoes.sgpm.service.implement.admin;
 
+import br.com.rngoes.sgpm.exception.InvalidFieldException;
 import br.com.rngoes.sgpm.exception.NotFoundException;
-import br.com.rngoes.sgpm.model.admin.Genero;
 import br.com.rngoes.sgpm.model.admin.Localidade;
 import br.com.rngoes.sgpm.repository.admin.LocalidadeRepo;
 import br.com.rngoes.sgpm.service.interfaces.admin.ILocalidadeService;
@@ -19,7 +19,19 @@ public class LocalidadeServiceImpl implements ILocalidadeService {
     }
 
     @Override
-    public Localidade addLocalidade(Localidade localidade) {
+    public Localidade criarLocalidade(Localidade localidade) {
+        if (localidade.getId() != null) {
+            throw new InvalidFieldException("Para cadastrar uma localidade o campo 'id' não deve ser informado.");
+        }
+        if (localidade.getDescricao() == null) {
+            throw new InvalidFieldException("Para cadastrar uma localidade o campo 'descricao' deve ser informado.");
+        }
+        if (localidade.getBase() == null) {
+            throw new InvalidFieldException("Para cadastrar uma localidade o campo 'base' deve ser informado.");
+        }
+        if (localidade.getAtivo() != null) {
+            throw new InvalidFieldException("Para cadastrar uma localidade o campo 'ativo' não deve ser informado.");
+        }
         return repo.save(localidade);
     }
 
@@ -45,7 +57,16 @@ public class LocalidadeServiceImpl implements ILocalidadeService {
     @Override
     public Localidade alterarLocalidade(Localidade localidade) {
         if (localidade.getId() == null) {
-            throw new NotFoundException("ID da Localida é obrigatorio.");
+            throw new InvalidFieldException("Para alterar uma localidade o campo 'id' deve ser informado.");
+        }
+        if (localidade.getDescricao() == null) {
+            throw new InvalidFieldException("Para alterar uma localidade o campo 'descricao' deve ser informado.");
+        }
+        if (localidade.getBase() == null) {
+            throw new InvalidFieldException("Para alterar uma localidade o campo 'base' deve ser informado.");
+        }
+        if (localidade.getAtivo() != null) {
+            throw new InvalidFieldException("Para alterar uma localidade o campo 'ativo' não deve ser informado.");
         }
         Localidade recuperado = consultarLocalidade(localidade.getId());
         recuperado.setDescricao(localidade.getDescricao());
