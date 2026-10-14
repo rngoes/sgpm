@@ -12,26 +12,46 @@ import java.util.List;
 @Service
 public class LocalidadeServiceImpl implements ILocalidadeService {
 
-    private LocalidadeRepo repo;
+    private final LocalidadeRepo repo;
     public LocalidadeServiceImpl(LocalidadeRepo repo) {
         super();
         this.repo = repo;
     }
 
+    private void validarRegistro(Localidade localidade, Boolean cadastro) {
+        if (cadastro) {
+            if (localidade.getId() != null) {
+                throw new InvalidFieldException("Para cadastrar uma localidade o campo 'id' não deve ser informado.");
+            }
+            if (localidade.getDescricao() == null) {
+                throw new InvalidFieldException("Para cadastrar uma localidade o campo 'descricao' deve ser informado.");
+            }
+            if (localidade.getBase() == null) {
+                throw new InvalidFieldException("Para cadastrar uma localidade o campo 'base' deve ser informado.");
+            }
+            if (localidade.getAtivo() != null) {
+                throw new InvalidFieldException("Para cadastrar uma localidade o campo 'ativo' não deve ser informado.");
+            }
+        } else {
+            if (localidade.getId() == null) {
+                throw new InvalidFieldException("Para alterar uma localidade o campo 'id' deve ser informado.");
+            }
+            if (localidade.getDescricao() == null) {
+                throw new InvalidFieldException("Para alterar uma localidade o campo 'descricao' deve ser informado.");
+            }
+            if (localidade.getBase() == null) {
+                throw new InvalidFieldException("Para alterar uma localidade o campo 'base' deve ser informado.");
+            }
+            if (localidade.getAtivo() != null) {
+                throw new InvalidFieldException("Para alterar uma localidade o campo 'ativo' não deve ser informado.");
+            }
+        }
+    }
+
     @Override
     public Localidade criarLocalidade(Localidade localidade) {
-        if (localidade.getId() != null) {
-            throw new InvalidFieldException("Para cadastrar uma localidade o campo 'id' não deve ser informado.");
-        }
-        if (localidade.getDescricao() == null) {
-            throw new InvalidFieldException("Para cadastrar uma localidade o campo 'descricao' deve ser informado.");
-        }
-        if (localidade.getBase() == null) {
-            throw new InvalidFieldException("Para cadastrar uma localidade o campo 'base' deve ser informado.");
-        }
-        if (localidade.getAtivo() != null) {
-            throw new InvalidFieldException("Para cadastrar uma localidade o campo 'ativo' não deve ser informado.");
-        }
+        validarRegistro(localidade, true);
+        localidade.setAtivo(Boolean.TRUE);
         return repo.save(localidade);
     }
 
@@ -56,18 +76,7 @@ public class LocalidadeServiceImpl implements ILocalidadeService {
 
     @Override
     public Localidade alterarLocalidade(Localidade localidade) {
-        if (localidade.getId() == null) {
-            throw new InvalidFieldException("Para alterar uma localidade o campo 'id' deve ser informado.");
-        }
-        if (localidade.getDescricao() == null) {
-            throw new InvalidFieldException("Para alterar uma localidade o campo 'descricao' deve ser informado.");
-        }
-        if (localidade.getBase() == null) {
-            throw new InvalidFieldException("Para alterar uma localidade o campo 'base' deve ser informado.");
-        }
-        if (localidade.getAtivo() != null) {
-            throw new InvalidFieldException("Para alterar uma localidade o campo 'ativo' não deve ser informado.");
-        }
+        validarRegistro(localidade, false);
         Localidade recuperado = consultarLocalidade(localidade.getId());
         recuperado.setDescricao(localidade.getDescricao());
         recuperado.setBase(localidade.getBase());

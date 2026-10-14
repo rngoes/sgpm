@@ -12,23 +12,40 @@ import java.util.List;
 @Service
 public class EmpresaServiceImpl implements IEmpresaService {
 
-    private EmpresaRepo repo;
+    private final EmpresaRepo repo;
     public EmpresaServiceImpl(EmpresaRepo repo) {
         super();
         this.repo = repo;
     }
 
+    private void validarRegistro(Empresa empresa, Boolean cadastro) {
+        if (cadastro) {
+            if (empresa.getId() != null) {
+                throw new InvalidFieldException("Para cadastrar uma empresa o campo 'id' não deve ser informado.");
+            }
+            if (empresa.getNome() == null) {
+                throw new InvalidFieldException("Para cadastrar uma empresa o campo 'nome' deve ser informado.");
+            }
+            if (empresa.getAtivo() != null) {
+                throw new InvalidFieldException("Para cadastrar uma empresa o campo 'ativo' não deve ser informado.");
+            }
+        } else {
+            if (empresa.getId() == null) {
+                throw new InvalidFieldException("Para alterar uma empresa o campo 'id' deve ser informado.");
+            }
+            if (empresa.getNome() == null) {
+                throw new InvalidFieldException("Para alterar uma empresa o campo 'nome' deve ser informado.");
+            }
+            if (empresa.getAtivo() != null) {
+                throw new InvalidFieldException("Para alterar uma empresa o campo 'ativo' não deve ser informado.");
+            }
+        }
+    }
+
     @Override
     public Empresa criarEmpresa(Empresa empresa) {
-        if (empresa.getId() != null) {
-            throw new InvalidFieldException("Para cadastrar uma empresa o campo 'id' não deve ser informado.");
-        }
-        if (empresa.getNome() == null) {
-            throw new InvalidFieldException("Para cadastrar uma empresa o campo 'nome' deve ser informado.");
-        }
-        if (empresa.getAtivo() != null) {
-            throw new InvalidFieldException("Para cadastrar uma empresa o campo 'ativo' não deve ser informado.");
-        }
+        validarRegistro(empresa, true);
+        empresa.setAtivo(Boolean.TRUE);
         return repo.save(empresa);
     }
 
@@ -48,15 +65,7 @@ public class EmpresaServiceImpl implements IEmpresaService {
 
     @Override
     public Empresa alterarEmpresa(Empresa empresa) {
-        if (empresa.getId() == null) {
-            throw new InvalidFieldException("Para alterar uma empresa o campo 'id' deve ser informado.");
-        }
-        if (empresa.getNome() == null) {
-            throw new InvalidFieldException("Para alterar uma empresa o campo 'nome' deve ser informado.");
-        }
-        if (empresa.getAtivo() != null) {
-            throw new InvalidFieldException("Para alterar uma empresa o campo 'ativo' não deve ser informado.");
-        }
+        validarRegistro(empresa, false);
         Empresa recuperada = consultarEmpresa(empresa.getId());
         recuperada.setNome(empresa.getNome());
         return repo.save(recuperada);

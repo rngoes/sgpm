@@ -10,14 +10,13 @@ import java.util.List;
 @RestController
 public class GeneroController {
 
-    private IGeneroService service;
+    private final IGeneroService service;
     public GeneroController(IGeneroService service){
         this.service = service;
     }
 
     @PostMapping("/genero")
     public ResponseEntity<Genero> criarGenero(@RequestBody Genero genero) {
-        genero.setAtivo(true);
         return ResponseEntity.status(201).body(service.criarGenero(genero));
     }
 

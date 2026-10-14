@@ -10,14 +10,13 @@ import java.util.List;
 @RestController
 public class EmpresaController {
 
-    private IEmpresaService service;
+    private final IEmpresaService service;
     public EmpresaController(IEmpresaService service) {
         this.service = service;
     }
 
     @PostMapping("/empresa")
     public ResponseEntity<Empresa> criarEmpresa(@RequestBody Empresa empresa) {
-        empresa.setAtivo(true);
         return ResponseEntity.status(201).body(service.criarEmpresa(empresa));
     }
 

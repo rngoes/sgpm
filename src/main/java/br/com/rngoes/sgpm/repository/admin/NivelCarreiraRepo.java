@@ -6,5 +6,5 @@ import org.springframework.data.repository.ListCrudRepository;
 import java.util.List;
 
 public interface NivelCarreiraRepo extends ListCrudRepository<NivelCarreira, Integer> {
-    public List<NivelCarreira> findByAtivo(Boolean ativo);
+    List<NivelCarreira> findByAtivo(Boolean ativo);
 }

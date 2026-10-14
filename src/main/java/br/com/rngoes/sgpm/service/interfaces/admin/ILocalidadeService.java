@@ -5,10 +5,10 @@ import br.com.rngoes.sgpm.model.admin.Localidade;
 import java.util.List;
 
 public interface ILocalidadeService {
-    public Localidade criarLocalidade(Localidade localidade);
-    public List<Localidade> listarLocalidade();
-    public List<Localidade> listarBase();
-    public Localidade consultarLocalidade(Integer id);
-    public Localidade alterarLocalidade(Localidade localidade);
-    public String deletarLocalidade(Integer id);
+    Localidade criarLocalidade(Localidade localidade);
+    List<Localidade> listarLocalidade();
+    List<Localidade> listarBase();
+    Localidade consultarLocalidade(Integer id);
+    Localidade alterarLocalidade(Localidade localidade);
+    String deletarLocalidade(Integer id);
 }

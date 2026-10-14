@@ -12,23 +12,40 @@ import java.util.List;
 @Service
 public class GeneroServiceImpl implements IGeneroService {
 
-    private GeneroRepo repo;
+    private final GeneroRepo repo;
     public GeneroServiceImpl(GeneroRepo repo) {
         super();
         this.repo = repo;
     }
 
+    private void validarRegistro(Genero genero, Boolean cadastro){
+        if (cadastro) {
+            if (genero.getId() != null) {
+                throw new InvalidFieldException("Para cadastrar um genero o campo 'id' não deve ser informado.");
+            }
+            if (genero.getDescricao() == null) {
+                throw new InvalidFieldException("Para cadastrar um genero o campo 'descricao' deve ser informado.");
+            }
+            if (genero.getAtivo() != null) {
+                throw new InvalidFieldException("Para cadastrar um genero o campo 'ativo' não deve ser informado.");
+            }
+        } else {
+            if (genero.getId() == null) {
+                throw new InvalidFieldException("Para alterar um genero o campo 'id' deve ser informado.");
+            }
+            if (genero.getDescricao() == null) {
+                throw new InvalidFieldException("Para alterar um genero o campo 'descricao' deve ser informado.");
+            }
+            if (genero.getAtivo() != null) {
+                throw new InvalidFieldException("Para alterar um genero o campo 'ativo' não deve ser informado.");
+            }
+        }
+    }
+
     @Override
     public Genero criarGenero(Genero genero) {
-        if (genero.getId() != null) {
-            throw new InvalidFieldException("Para cadastrar um genero o campo 'id' não deve ser informado.");
-        }
-        if (genero.getDescricao() == null) {
-            throw new InvalidFieldException("Para cadastrar um genero o campo 'descricao' deve ser informado.");
-        }
-        if (genero.getAtivo() != null) {
-            throw new InvalidFieldException("Para cadastrar um genero o campo 'ativo' não deve ser informado.");
-        }
+        validarRegistro(genero, true);
+        genero.setAtivo(Boolean.TRUE);
         return repo.save(genero);
     }
 
@@ -48,15 +65,7 @@ public class GeneroServiceImpl implements IGeneroService {
 
     @Override
     public Genero alterarGenero(Genero genero) {
-        if (genero.getId() == null) {
-            throw new InvalidFieldException("Para alterar um genero o campo 'id' deve ser informado.");
-        }
-        if (genero.getDescricao() == null) {
-            throw new InvalidFieldException("Para alterar um genero o campo 'descricao' deve ser informado.");
-        }
-        if (genero.getAtivo() != null) {
-            throw new InvalidFieldException("Para alterar um genero o campo 'ativo' não deve ser informado.");
-        }
+        validarRegistro(genero, false);
         Genero recuperado = consultarGenero(genero.getId());
         recuperado.setDescricao(genero.getDescricao());
         return repo.save(recuperado);

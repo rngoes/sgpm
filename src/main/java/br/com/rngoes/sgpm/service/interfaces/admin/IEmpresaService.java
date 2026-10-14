@@ -5,9 +5,9 @@ import br.com.rngoes.sgpm.model.admin.Empresa;
 import java.util.List;
 
 public interface IEmpresaService {
-    public Empresa criarEmpresa(Empresa empresa);
-    public List<Empresa> listarEmpresas();
-    public Empresa consultarEmpresa(Integer id);
-    public Empresa alterarEmpresa(Empresa empresa);
-    public String deletarEmpresa(Integer id);
+    Empresa criarEmpresa(Empresa empresa);
+    List<Empresa> listarEmpresas();
+    Empresa consultarEmpresa(Integer id);
+    Empresa alterarEmpresa(Empresa empresa);
+    String deletarEmpresa(Integer id);
 }

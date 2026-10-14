@@ -1,6 +1,5 @@
 package br.com.rngoes.sgpm.controller.admin;
 
-import br.com.rngoes.sgpm.model.admin.Genero;
 import br.com.rngoes.sgpm.model.admin.NivelCarreira;
 import br.com.rngoes.sgpm.service.interfaces.admin.INivelCarreiraService;
 import org.springframework.http.ResponseEntity;
@@ -11,14 +10,13 @@ import java.util.List;
 @RestController
 public class NivelCarreiraController {
 
-    private INivelCarreiraService service;
+    private final INivelCarreiraService service;
     public NivelCarreiraController(INivelCarreiraService service) {
         this.service = service;
     }
 
     @PostMapping("/nivelcarreira")
     public ResponseEntity<NivelCarreira> criarNivelCarreira(@RequestBody NivelCarreira nivelCarreira) {
-        nivelCarreira.setAtivo(true);
         return ResponseEntity.status(201).body(service.criarNivelCarreira(nivelCarreira));
     }
 

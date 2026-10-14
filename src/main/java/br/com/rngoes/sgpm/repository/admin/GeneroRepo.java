@@ -6,5 +6,5 @@ import org.springframework.data.repository.ListCrudRepository;
 import java.util.List;
 
 public interface GeneroRepo extends ListCrudRepository<Genero, Integer> {
-    public List<Genero> findByAtivo(Boolean ativo);
+    List<Genero> findByAtivo(Boolean ativo);
 }

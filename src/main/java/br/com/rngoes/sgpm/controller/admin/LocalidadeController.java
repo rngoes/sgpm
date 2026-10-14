@@ -10,14 +10,13 @@ import java.util.List;
 @RestController
 public class LocalidadeController {
 
-    private ILocalidadeService service;
+    private final ILocalidadeService service;
     public LocalidadeController(ILocalidadeService service) {
         this.service = service;
     }
 
     @PostMapping("/localidade")
     public ResponseEntity<Localidade> criarLocalidade(@RequestBody Localidade localidade) {
-        localidade.setAtivo(true);
         return ResponseEntity.status(201).body(service.criarLocalidade(localidade));
     }
 

@@ -12,23 +12,40 @@ import java.util.List;
 @Service
 public class NivelCarreiraServiceImpl implements INivelCarreiraService {
 
-    private NivelCarreiraRepo repo;
+    private final NivelCarreiraRepo repo;
     public NivelCarreiraServiceImpl(NivelCarreiraRepo repo) {
         super();
         this.repo = repo;
     }
 
+    private void validarRegistro(NivelCarreira nivelCarreira, Boolean cadastro) {
+        if (cadastro) {
+            if (nivelCarreira.getId() != null) {
+                throw new InvalidFieldException("Para cadastrar um nível carreira o campo 'id' não deve ser informado.");
+            }
+            if (nivelCarreira.getDescricao() == null) {
+                throw new InvalidFieldException("Para cadastrar um nível carreira o campo 'descricao' deve ser informado.");
+            }
+            if (nivelCarreira.getAtivo() != null) {
+                throw new InvalidFieldException("Para cadastrar um nível carreira o campo 'ativo' não deve ser informado.");
+            }
+        } else {
+            if (nivelCarreira.getId() == null) {
+                throw new InvalidFieldException("Para alterar um nível carreira o campo 'id' deve ser informado.");
+            }
+            if (nivelCarreira.getDescricao() == null) {
+                throw new InvalidFieldException("Para alterar um nível carreira o campo 'descricao' deve ser informado.");
+            }
+            if (nivelCarreira.getAtivo() != null) {
+                throw new InvalidFieldException("Para alterar um nível carreira o campo 'ativo' não deve ser informado.");
+            }
+        }
+    }
+
     @Override
     public NivelCarreira criarNivelCarreira(NivelCarreira nivelCarreira) {
-        if (nivelCarreira.getId() != null) {
-            throw new InvalidFieldException("Para cadastrar um nível carreira o campo 'id' não deve ser informado.");
-        }
-        if (nivelCarreira.getDescricao() == null) {
-            throw new InvalidFieldException("Para cadastrar um nível carreira o campo 'descricao' deve ser informado.");
-        }
-        if (nivelCarreira.getAtivo() != null) {
-            throw new InvalidFieldException("Para cadastrar um nível carreira o campo 'ativo' não deve ser informado.");
-        }
+        validarRegistro(nivelCarreira, true);
+        nivelCarreira.setAtivo(Boolean.TRUE);
         return repo.save(nivelCarreira);
     }
 
@@ -48,15 +65,7 @@ public class NivelCarreiraServiceImpl implements INivelCarreiraService {
 
     @Override
     public NivelCarreira alterarNivelCarreira(NivelCarreira nivelCarreira) {
-        if (nivelCarreira.getId() == null) {
-            throw new InvalidFieldException("Para alterar um nível carreira o campo 'id' deve ser informado.");
-        }
-        if (nivelCarreira.getDescricao() == null) {
-            throw new InvalidFieldException("Para alterar um nível carreira o campo 'descricao' deve ser informado.");
-        }
-        if (nivelCarreira.getAtivo() != null) {
-            throw new InvalidFieldException("Para alterar um nível carreira o campo 'ativo' não deve ser informado.");
-        }
+        validarRegistro(nivelCarreira, false);
         NivelCarreira recuperado = consultarNivelCarreira(nivelCarreira.getId());
         recuperado.setDescricao(nivelCarreira.getDescricao());
         return repo.save(recuperado);
