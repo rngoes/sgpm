@@ -55,7 +55,7 @@ public class GeneroServiceImpl implements IGeneroService {
     }
 
     @Override
-    public Genero consultarGenero(Integer id) {
+    public Genero consultarGenero(Long id) {
         Genero genero = repo.findById(id).orElseThrow(()-> new NotFoundException("Genero " + id + " não encontrado."));
         if (!genero.getAtivo()) {
             throw new NotFoundException("Genero " + id + " não encontrado.");
@@ -72,7 +72,7 @@ public class GeneroServiceImpl implements IGeneroService {
     }
 
     @Override
-    public String deletarGenero(Integer id) {
+    public String deletarGenero(Long id) {
         Genero genero = consultarGenero(id);
         genero.setAtivo(Boolean.FALSE);
         repo.save(genero);

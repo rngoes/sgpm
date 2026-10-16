@@ -54,7 +54,7 @@ public class MotivoSaidaServiceImpl implements IMotivoSaidaService {
     }
 
     @Override
-    public MotivoSaida consultarMotivoSaida(Integer id) {
+    public MotivoSaida consultarMotivoSaida(Long id) {
         MotivoSaida motivoSaida = repo.findById(id).orElseThrow(()-> new NotFoundException("Motivo de saída " + id + " não encontrado."));
         if (!motivoSaida.getAtivo()) {
             throw new NotFoundException("Motivo de saída " + id + " não encontrado.");
@@ -71,7 +71,7 @@ public class MotivoSaidaServiceImpl implements IMotivoSaidaService {
     }
 
     @Override
-    public String deletarMotivoSaida(Integer id) {
+    public String deletarMotivoSaida(Long id) {
         MotivoSaida motivoSaida = consultarMotivoSaida(id);
         motivoSaida.setAtivo(Boolean.FALSE);
         repo.save(motivoSaida);

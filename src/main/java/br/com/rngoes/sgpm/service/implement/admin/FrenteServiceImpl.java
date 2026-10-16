@@ -55,7 +55,7 @@ public class FrenteServiceImpl implements IFrenteService {
     }
 
     @Override
-    public Frente consultarFrente(Integer id) {
+    public Frente consultarFrente(Long id) {
         Frente frente = repo.findById(id).orElseThrow(()-> new NotFoundException("Frente " + id + " não encontrada."));
         if (!frente.getAtivo()) {
             throw new NotFoundException("Frente " + id + " não encontrada.");
@@ -72,7 +72,7 @@ public class FrenteServiceImpl implements IFrenteService {
     }
 
     @Override
-    public String deletarFrente(Integer id) {
+    public String deletarFrente(Long id) {
         Frente frente = consultarFrente(id);
         frente.setAtivo(Boolean.FALSE);
         repo.save(frente);

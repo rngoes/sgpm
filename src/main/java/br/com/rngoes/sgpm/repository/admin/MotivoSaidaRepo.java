@@ -5,6 +5,6 @@ import org.springframework.data.repository.ListCrudRepository;
 
 import java.util.List;
 
-public interface MotivoSaidaRepo extends ListCrudRepository<MotivoSaida, Integer> {
+public interface MotivoSaidaRepo extends ListCrudRepository<MotivoSaida, Long> {
     List<MotivoSaida> findByAtivo(Boolean ativo);
 }

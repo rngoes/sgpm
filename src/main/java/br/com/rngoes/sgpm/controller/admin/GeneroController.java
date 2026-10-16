@@ -26,7 +26,7 @@ public class GeneroController {
     }
 
     @GetMapping("/genero/{id}")
-    public ResponseEntity<Genero> consultarGenero(@PathVariable Integer id) {
+    public ResponseEntity<Genero> consultarGenero(@PathVariable Long id) {
         return ResponseEntity.ok(service.consultarGenero(id));
     }
 
@@ -36,7 +36,7 @@ public class GeneroController {
     }
 
     @DeleteMapping("/genero/{id}")
-    public ResponseEntity<String> deletarGenero(@PathVariable Integer id) {
+    public ResponseEntity<String> deletarGenero(@PathVariable Long id) {
         return ResponseEntity.ok(service.deletarGenero(id));
     }
 }

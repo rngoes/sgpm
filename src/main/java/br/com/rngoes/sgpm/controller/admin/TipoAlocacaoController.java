@@ -26,7 +26,7 @@ public class TipoAlocacaoController {
     }
 
     @GetMapping("/tipoalocacao/{id}")
-    public ResponseEntity<TipoAlocacao> consultarTipoAlocacao(@PathVariable Integer id) {
+    public ResponseEntity<TipoAlocacao> consultarTipoAlocacao(@PathVariable Long id) {
         return ResponseEntity.ok(service.consultarTipoAlocacao(id));
     }
 
@@ -36,7 +36,7 @@ public class TipoAlocacaoController {
     }
 
     @DeleteMapping("/tipoalocacao/{id}")
-    public ResponseEntity<String> deletarTipoAlocacao(@PathVariable Integer id) {
+    public ResponseEntity<String> deletarTipoAlocacao(@PathVariable Long id) {
         return ResponseEntity.ok(service.deletarTipoAlocacao(id));
     }
 

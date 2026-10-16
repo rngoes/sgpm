@@ -7,7 +7,7 @@ import java.util.List;
 public interface INivelCarreiraService {
     NivelCarreira criarNivelCarreira(NivelCarreira nivelCarreira);
     List<NivelCarreira> listarNivelCarreira();
-    NivelCarreira consultarNivelCarreira(Integer id);
+    NivelCarreira consultarNivelCarreira(Long id);
     NivelCarreira alterarNivelCarreira(NivelCarreira nivelCarreira);
-    String deletarNivelCarreira(Integer id);
+    String deletarNivelCarreira(Long id);
 }

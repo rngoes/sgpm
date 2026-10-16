@@ -5,6 +5,6 @@ import org.springframework.data.repository.ListCrudRepository;
 
 import java.util.List;
 
-public interface FrenteRepo extends ListCrudRepository<Frente, Integer> {
+public interface FrenteRepo extends ListCrudRepository<Frente, Long> {
     List<Frente> findByAtivo(Boolean ativo);
 }

@@ -7,7 +7,7 @@ import java.util.List;
 public interface IGeneroService {
     Genero criarGenero(Genero genero);
     List<Genero> listarGeneros();
-    Genero consultarGenero(Integer id);
+    Genero consultarGenero(Long id);
     Genero alterarGenero(Genero genero);
-    String deletarGenero(Integer id);
+    String deletarGenero(Long id);
 }

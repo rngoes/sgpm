@@ -28,7 +28,7 @@ public class JustificativaSaidaController {
     }
 
     @GetMapping("/justificativasaida/{id}")
-    public ResponseEntity<JustificativaSaida> consultarJustificativaSaida(@PathVariable Integer id) {
+    public ResponseEntity<JustificativaSaida> consultarJustificativaSaida(@PathVariable Long id) {
         return ResponseEntity.ok(service.consultarJustificativaSaida(id));
     }
 
@@ -38,7 +38,7 @@ public class JustificativaSaidaController {
     }
 
     @DeleteMapping("/justificativasaida/{id}")
-    public ResponseEntity<String> deletarJustificativaSaida(@PathVariable Integer id) {
+    public ResponseEntity<String> deletarJustificativaSaida(@PathVariable Long id) {
         return ResponseEntity.ok(service.deletarJustificativaSaida(id));
     }
 

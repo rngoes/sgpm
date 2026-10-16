@@ -55,7 +55,7 @@ public class TipoAlocacaoServiceImpl implements ITipoAlocacaoService {
     }
 
     @Override
-    public TipoAlocacao consultarTipoAlocacao(Integer id) {
+    public TipoAlocacao consultarTipoAlocacao(Long id) {
         TipoAlocacao tipoAlocacao = repo.findById(id).orElseThrow(()-> new NotFoundException("Tipo de alocacão " + id + " não encontrada."));
         if (!tipoAlocacao.getAtivo()) {
             throw new NotFoundException("Tipo de alocacão " + id + " não encontrado.");
@@ -72,7 +72,7 @@ public class TipoAlocacaoServiceImpl implements ITipoAlocacaoService {
     }
 
     @Override
-    public String deletarTipoAlocacao(Integer id) {
+    public String deletarTipoAlocacao(Long id) {
         TipoAlocacao tipoAlocacao = consultarTipoAlocacao(id);
         tipoAlocacao.setAtivo(Boolean.FALSE);
         repo.save(tipoAlocacao);

@@ -5,7 +5,7 @@ import org.springframework.data.repository.ListCrudRepository;
 
 import java.util.List;
 
-public interface LocalidadeRepo extends ListCrudRepository<Localidade, Integer> {
+public interface LocalidadeRepo extends ListCrudRepository<Localidade, Long> {
     List<Localidade> findByAtivo(Boolean ativo);
     List<Localidade> findByBaseAndAtivo(Boolean base, Boolean ativo);
 }

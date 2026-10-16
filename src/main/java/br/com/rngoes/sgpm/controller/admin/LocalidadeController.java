@@ -31,7 +31,7 @@ public class LocalidadeController {
     }
 
     @GetMapping("/localidade/{id}")
-    public ResponseEntity<Localidade> consultarLocalidade(@PathVariable Integer id) {
+    public ResponseEntity<Localidade> consultarLocalidade(@PathVariable Long id) {
         return ResponseEntity.ok(service.consultarLocalidade(id));
     }
 
@@ -41,7 +41,7 @@ public class LocalidadeController {
     }
 
     @DeleteMapping("/localidade/{id}")
-    public ResponseEntity<String> deletarLocalidade(@PathVariable Integer id) {
+    public ResponseEntity<String> deletarLocalidade(@PathVariable Long id) {
         return ResponseEntity.ok(service.deletarLocalidade(id));
     }
 }

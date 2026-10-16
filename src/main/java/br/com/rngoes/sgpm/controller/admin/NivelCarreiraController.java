@@ -26,7 +26,7 @@ public class NivelCarreiraController {
     }
 
     @GetMapping("/nivelcarreira/{id}")
-    public ResponseEntity<NivelCarreira> consultarNivelCarreira(@PathVariable Integer id) {
+    public ResponseEntity<NivelCarreira> consultarNivelCarreira(@PathVariable Long id) {
         return ResponseEntity.ok(service.consultarNivelCarreira(id));
     }
 
@@ -36,7 +36,7 @@ public class NivelCarreiraController {
     }
 
     @DeleteMapping("/nivelcarreira/{id}")
-    public ResponseEntity<String> deletarNivelCarreira(@PathVariable Integer id) {
+    public ResponseEntity<String> deletarNivelCarreira(@PathVariable Long id) {
         return ResponseEntity.ok(service.deletarNivelCarreira(id));
     }
 }

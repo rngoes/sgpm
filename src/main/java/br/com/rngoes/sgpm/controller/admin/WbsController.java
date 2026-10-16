@@ -26,7 +26,7 @@ public class WbsController {
     }
 
     @GetMapping("/wbs/{id}")
-    public ResponseEntity<Wbs> consultarWbs(@PathVariable Integer id) {
+    public ResponseEntity<Wbs> consultarWbs(@PathVariable Long id) {
         return ResponseEntity.ok(service.consultarWbs(id));
     }
 
@@ -36,7 +36,7 @@ public class WbsController {
     }
 
     @DeleteMapping("/wbs/{id}")
-    public ResponseEntity<String> deletarWbs(@PathVariable Integer id) {
+    public ResponseEntity<String> deletarWbs(@PathVariable Long id) {
         return ResponseEntity.ok(service.deletarWbs(id));
     }
 

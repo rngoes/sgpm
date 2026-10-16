@@ -7,7 +7,7 @@ import java.util.List;
 public interface IEmpresaService {
     Empresa criarEmpresa(Empresa empresa);
     List<Empresa> listarEmpresas();
-    Empresa consultarEmpresa(Integer id);
+    Empresa consultarEmpresa(Long id);
     Empresa alterarEmpresa(Empresa empresa);
-    String deletarEmpresa(Integer id);
+    String deletarEmpresa(Long id);
 }

@@ -5,6 +5,6 @@ import org.springframework.data.repository.ListCrudRepository;
 
 import java.util.List;
 
-public interface TipoAlocacaoRepo extends ListCrudRepository<TipoAlocacao, Integer> {
+public interface TipoAlocacaoRepo extends ListCrudRepository<TipoAlocacao, Long> {
     List<TipoAlocacao> findByAtivo(Boolean ativo);
 }

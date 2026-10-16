@@ -26,7 +26,7 @@ public class FrenteController {
     }
 
     @GetMapping("/frente/{id}")
-    public ResponseEntity<Frente> consultarFrente(@PathVariable Integer id) {
+    public ResponseEntity<Frente> consultarFrente(@PathVariable Long id) {
         return ResponseEntity.ok(service.consultarFrente(id));
     }
 
@@ -36,7 +36,7 @@ public class FrenteController {
     }
 
     @DeleteMapping("/frente/{id}")
-    public ResponseEntity<String> deletarFrente(@PathVariable Integer id) {
+    public ResponseEntity<String> deletarFrente(@PathVariable Long id) {
         return ResponseEntity.ok(service.deletarFrente(id));
     }
 }

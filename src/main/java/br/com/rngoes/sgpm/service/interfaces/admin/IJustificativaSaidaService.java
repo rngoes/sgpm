@@ -7,7 +7,7 @@ import java.util.List;
 public interface IJustificativaSaidaService {
     JustificativaSaida criarJustificativaSaida(JustificativaSaida justificativaSaida);
     List<JustificativaSaida> listarJustificativasSaida();
-    JustificativaSaida consultarJustificativaSaida(Integer id);
+    JustificativaSaida consultarJustificativaSaida(Long id);
     JustificativaSaida alterarJustificativaSaida(JustificativaSaida justificativaSaida);
-    String deletarJustificativaSaida(Integer id);
+    String deletarJustificativaSaida(Long id);
 }

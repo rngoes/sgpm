@@ -66,7 +66,7 @@ public class PapelServiceImpl implements IPapelService {
     }
 
     @Override
-    public Papel consultarPapel(Integer id) {
+    public Papel consultarPapel(Long id) {
         Papel papel = repo.findById(id).orElseThrow(()-> new NotFoundException("Papel " + id + " não encontrado."));
         if (!papel.getAtivo()) {
             throw new NotFoundException("Papel " + id + " não encontrado.");
@@ -84,7 +84,7 @@ public class PapelServiceImpl implements IPapelService {
     }
 
     @Override
-    public String deletarPapel(Integer id) {
+    public String deletarPapel(Long id) {
         Papel papel = consultarPapel(id);
         papel.setAtivo(Boolean.FALSE);
         repo.save(papel);

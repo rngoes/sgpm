@@ -5,6 +5,6 @@ import org.springframework.data.repository.ListCrudRepository;
 
 import java.util.List;
 
-public interface NivelCarreiraRepo extends ListCrudRepository<NivelCarreira, Integer> {
+public interface NivelCarreiraRepo extends ListCrudRepository<NivelCarreira, Long> {
     List<NivelCarreira> findByAtivo(Boolean ativo);
 }

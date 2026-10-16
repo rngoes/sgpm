@@ -66,7 +66,7 @@ public class LocalidadeServiceImpl implements ILocalidadeService {
     }
 
     @Override
-    public Localidade consultarLocalidade(Integer id) {
+    public Localidade consultarLocalidade(Long id) {
         Localidade localidade =  repo.findById(id).orElseThrow(()-> new NotFoundException("Localidade " + id + " não encontrada."));
         if (!localidade.getAtivo()) {
             throw new NotFoundException("Localidade " + id + " não encontrada.");
@@ -84,7 +84,7 @@ public class LocalidadeServiceImpl implements ILocalidadeService {
     }
 
     @Override
-    public String deletarLocalidade(Integer id) {
+    public String deletarLocalidade(Long id) {
         Localidade localidade = consultarLocalidade(id);
         localidade.setAtivo(Boolean.FALSE);
         repo.save(localidade);

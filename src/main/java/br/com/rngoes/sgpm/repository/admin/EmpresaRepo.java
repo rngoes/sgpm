@@ -5,6 +5,6 @@ import org.springframework.data.repository.ListCrudRepository;
 
 import java.util.List;
 
-public interface EmpresaRepo extends ListCrudRepository<Empresa, Integer> {
+public interface EmpresaRepo extends ListCrudRepository<Empresa, Long> {
     List<Empresa> findByAtivo(Boolean ativo);
 }

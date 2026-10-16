@@ -55,7 +55,7 @@ public class NivelCarreiraServiceImpl implements INivelCarreiraService {
     }
 
     @Override
-    public NivelCarreira consultarNivelCarreira(Integer id) {
+    public NivelCarreira consultarNivelCarreira(Long id) {
         NivelCarreira nivelCarreira =  repo.findById(id).orElseThrow(()-> new NotFoundException("Nivel de Carreira " + id + " não encontrado."));
         if (!nivelCarreira.getAtivo()) {
             throw new NotFoundException("Nivel de Carreira " + id + " não encontrado.");
@@ -72,7 +72,7 @@ public class NivelCarreiraServiceImpl implements INivelCarreiraService {
     }
 
     @Override
-    public String deletarNivelCarreira(Integer id) {
+    public String deletarNivelCarreira(Long id) {
         NivelCarreira nivelCarreira = consultarNivelCarreira(id);
         nivelCarreira.setAtivo(Boolean.FALSE);
         repo.save(nivelCarreira);

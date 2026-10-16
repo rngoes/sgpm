@@ -55,7 +55,7 @@ public class EmpresaServiceImpl implements IEmpresaService {
     }
 
     @Override
-    public Empresa consultarEmpresa(Integer id) {
+    public Empresa consultarEmpresa(Long id) {
         Empresa empresa = repo.findById(id).orElseThrow(()-> new NotFoundException("Empresa " + id + " não encontrada."));
         if (!empresa.getAtivo()) {
             throw new NotFoundException("Empresa " + id + " não encontrada.");
@@ -72,7 +72,7 @@ public class EmpresaServiceImpl implements IEmpresaService {
     }
 
     @Override
-    public String deletarEmpresa(Integer id) {
+    public String deletarEmpresa(Long id) {
         Empresa empresa = consultarEmpresa(id);
         empresa.setAtivo(Boolean.FALSE);
         repo.save(empresa);

@@ -55,7 +55,7 @@ public class JustificativaSaidaServiceImpl implements IJustificativaSaidaService
     }
 
     @Override
-    public JustificativaSaida consultarJustificativaSaida(Integer id) {
+    public JustificativaSaida consultarJustificativaSaida(Long id) {
         JustificativaSaida justificativaSaida = repo.findById(id).orElseThrow(()-> new NotFoundException("Justificativa de saída " + id + " não encontrada."));
         if (!justificativaSaida.getAtivo()) {
             throw new NotFoundException("Justificativa de saída " + id + " não encontrada.");
@@ -72,7 +72,7 @@ public class JustificativaSaidaServiceImpl implements IJustificativaSaidaService
     }
 
     @Override
-    public String deletarJustificativaSaida(Integer id) {
+    public String deletarJustificativaSaida(Long id) {
         JustificativaSaida justificativaSaida = consultarJustificativaSaida(id);
         justificativaSaida.setAtivo(Boolean.FALSE);
         repo.save(justificativaSaida);

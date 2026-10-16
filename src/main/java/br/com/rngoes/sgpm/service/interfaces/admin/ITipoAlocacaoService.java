@@ -7,7 +7,7 @@ import java.util.List;
 public interface ITipoAlocacaoService {
     TipoAlocacao criarTipoAlocacao(TipoAlocacao tipoAlocacao);
     List<TipoAlocacao> listarTiposAlocacao();
-    TipoAlocacao consultarTipoAlocacao(Integer id);
+    TipoAlocacao consultarTipoAlocacao(Long id);
     TipoAlocacao alterarTipoAlocacao(TipoAlocacao tipoAlocacao);
-    String deletarTipoAlocacao(Integer id);
+    String deletarTipoAlocacao(Long id);
 }

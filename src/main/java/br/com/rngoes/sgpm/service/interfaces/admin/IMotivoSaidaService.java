@@ -7,7 +7,7 @@ import java.util.List;
 public interface IMotivoSaidaService {
     MotivoSaida criarMotivoSaida(MotivoSaida motivoSaida);
     List<MotivoSaida> listarMotivosSaida();
-    MotivoSaida consultarMotivoSaida(Integer id);
+    MotivoSaida consultarMotivoSaida(Long id);
     MotivoSaida alterarMotivoSaida(MotivoSaida motivoSaida);
-    String deletarMotivoSaida(Integer id);
+    String deletarMotivoSaida(Long id);
 }

@@ -7,7 +7,7 @@ import java.util.List;
 public interface IWbsService {
     Wbs criarWbs(Wbs wbs);
     List<Wbs> listarWbs();
-    Wbs consultarWbs(Integer id);
+    Wbs consultarWbs(Long id);
     Wbs alterarWbs(Wbs wbs);
-    String deletarWbs(Integer id);
+    String deletarWbs(Long id);
 }

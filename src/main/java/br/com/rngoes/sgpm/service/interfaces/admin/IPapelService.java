@@ -8,7 +8,7 @@ public interface IPapelService {
     Papel criarPapel(Papel papel);
     List<Papel> listarPapeis();
     List<Papel> listarPapeisByAdministrador(Boolean administrador);
-    Papel consultarPapel(Integer id);
+    Papel consultarPapel(Long id);
     Papel alterarPapel(Papel papel);
-    String deletarPapel(Integer id);
+    String deletarPapel(Long id);
 }

@@ -27,7 +27,7 @@ public class MotivoSaidaController {
     }
 
     @GetMapping("/motivosaida/{id}")
-    public ResponseEntity<MotivoSaida> consultarMotivoSaida(@PathVariable Integer id) {
+    public ResponseEntity<MotivoSaida> consultarMotivoSaida(@PathVariable Long id) {
         return ResponseEntity.ok(service.consultarMotivoSaida(id));
     }
 
@@ -37,7 +37,7 @@ public class MotivoSaidaController {
     }
 
     @DeleteMapping("/motivosaida/{id}")
-    public ResponseEntity<String> deletarMotivoSaida(@PathVariable Integer id) {
+    public ResponseEntity<String> deletarMotivoSaida(@PathVariable Long id) {
         return ResponseEntity.ok(service.deletarMotivoSaida(id));
     }
 

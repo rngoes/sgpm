@@ -5,6 +5,6 @@ import org.springframework.data.repository.ListCrudRepository;
 
 import java.util.List;
 
-public interface WbsRepo extends ListCrudRepository<Wbs, Integer> {
+public interface WbsRepo extends ListCrudRepository<Wbs, Long> {
     List<Wbs> findByAtivo(Boolean ativo);
 }

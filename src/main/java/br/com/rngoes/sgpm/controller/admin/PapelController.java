@@ -36,7 +36,7 @@ public class PapelController {
     }
 
     @GetMapping("/papel/{id}")
-    public ResponseEntity<Papel> consultarPapel(@PathVariable Integer id) {
+    public ResponseEntity<Papel> consultarPapel(@PathVariable Long id) {
         return ResponseEntity.ok(service.consultarPapel(id));
     }
 
@@ -46,7 +46,7 @@ public class PapelController {
     }
 
     @DeleteMapping("/papel/{id}")
-    public ResponseEntity<String> deletarPapel(@PathVariable Integer id) {
+    public ResponseEntity<String> deletarPapel(@PathVariable Long id) {
         return ResponseEntity.ok(service.deletarPapel(id));
     }
 }

@@ -61,7 +61,7 @@ public class WbsServiceImpl implements IWbsService {
     }
 
     @Override
-    public Wbs consultarWbs(Integer id) {
+    public Wbs consultarWbs(Long id) {
         Wbs wbs = repo.findById(id).orElseThrow(()-> new NotFoundException("Wbs " + id + " não encontrada."));
         if (!wbs.getAtivo()) {
             throw new NotFoundException("Wbs " + id + " não encontrada.");
@@ -79,7 +79,7 @@ public class WbsServiceImpl implements IWbsService {
     }
 
     @Override
-    public String deletarWbs(Integer id) {
+    public String deletarWbs(Long id) {
         Wbs wbs = consultarWbs(id);
         wbs.setAtivo(Boolean.FALSE);
         repo.save(wbs);

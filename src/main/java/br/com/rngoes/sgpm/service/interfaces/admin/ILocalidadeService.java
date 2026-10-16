@@ -8,7 +8,7 @@ public interface ILocalidadeService {
     Localidade criarLocalidade(Localidade localidade);
     List<Localidade> listarLocalidade();
     List<Localidade> listarBase();
-    Localidade consultarLocalidade(Integer id);
+    Localidade consultarLocalidade(Long id);
     Localidade alterarLocalidade(Localidade localidade);
-    String deletarLocalidade(Integer id);
+    String deletarLocalidade(Long id);
 }

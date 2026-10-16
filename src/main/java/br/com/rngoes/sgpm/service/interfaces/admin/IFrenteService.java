@@ -7,7 +7,7 @@ import java.util.List;
 public interface IFrenteService {
     Frente  criarFrente(Frente frente);
     List<Frente> listarFrentes();
-    Frente consultarFrente(Integer id);
+    Frente consultarFrente(Long id);
     Frente alterarFrente(Frente frente);
-    String deletarFrente(Integer id);
+    String deletarFrente(Long id);
 }
